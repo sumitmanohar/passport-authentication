@@ -3,7 +3,7 @@ const router=express.Router()
 const UserModel=require('./../model/userModel')
 var bcrypt = require('bcryptjs');
 //login
-router.get('/login',(req,res)=>{res.send('login')})
+router.get('/login',(req,res)=>{res.render('login')})
 //register
 router.post('/register',(req,res)=>{
     console.log(req.body,req.body.name)
