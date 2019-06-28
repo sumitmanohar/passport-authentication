@@ -3,10 +3,19 @@ const router=express.Router()
 const UserModel=require('./../model/userModel')
 var bcrypt = require('bcryptjs');
 //login
-router.get('/login',(req,res)=>{res.render('login')})
+router.get('/login', (req, res) => res.render('login'));
+router.post('/login',(req,res)=>{
+    const loginDetails={
+        email:req.body.email,
+        password:req.body.password
+    }
+     console.log(loginDetails)
+    res.render('login',{
+       userDetails:loginDetails
+    })})
 //register
+router.get('/register',(req,res)=>res.render('register'));
 router.post('/register',(req,res)=>{
-    console.log(req.body,req.body.name)
 if(!req.body.name){
     res.status(400).send({msg:"name is required"})
 }else if(!req.body.email){
