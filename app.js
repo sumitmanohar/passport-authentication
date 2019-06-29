@@ -7,7 +7,10 @@ const bodyParser = require('body-parser');
 const index=require('./routes/index')
 const user=require('./routes/user')
 const config=require('./config/databaseKey')
+const passport = require('./config/passport');
 
+
+app.use(passport.initialize());
 //mongodb connection
 mongoose.connect(config.mongoURL,{useNewUrlParser:true}).then(()=>{
 console.log('mongodb connected')

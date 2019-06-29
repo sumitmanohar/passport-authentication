@@ -1,18 +1,17 @@
 const express = require('express')
 const router=express.Router()
 const UserModel=require('./../model/userModel')
+const passport = require('passport')
 var bcrypt = require('bcryptjs');
 //login
 router.get('/login', (req, res) => res.render('login'));
-router.post('/login',(req,res)=>{
-    const loginDetails={
-        email:req.body.email,
-        password:req.body.password
-    }
-     console.log(loginDetails)
-    res.render('login',{
-       userDetails:loginDetails
-    })})
+
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+      successRedirect: '/welcome',
+      failureRedirect: '/dashboard',
+    })(req, res, next);
+  });
 //register
 router.get('/register',(req,res)=>res.render('register'));
 router.post('/register',(req,res)=>{
