@@ -3,6 +3,24 @@ const router=express.Router()
 const UserModel=require('./../model/userModel')
 const passport = require('passport')
 var bcrypt = require('bcryptjs');
+var multer  = require('multer')
+
+//file upload using multer
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images/upload')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  })
+  var upload = multer({ storage: storage })
+
+  router.post('/fileupload',upload.single('image'),(req,res,next)=>{
+      res.send({
+          msg:'file upload successfully'
+      })
+  })
 //login
 router.get('/login', (req, res) => res.render('login'));
 
