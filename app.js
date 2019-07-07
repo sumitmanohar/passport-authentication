@@ -4,6 +4,7 @@ var ejs =require('ejs')
 var path =require('path')
 const mongoose=require("mongoose")
 const bodyParser = require('body-parser');
+
 const index=require('./routes/index')
 const user=require('./routes/user')
 const config=require('./config/databaseKey')
